@@ -18,11 +18,11 @@ export function Message({message}) {
     <li className={classNames(
         "flex mt-4",
         user.username === message.to_user.username
-        ? "justify-end": "justify-start"
+        ? "justify-start": "justify-end"
         )}>
-        <div className={classNames("relative max-w-xl px-4 py-2 text-gray-700 rounded drop-shadow-xl",
+        <div className={classNames("relative max-w-xl px-4 py-2 text-gray-700 rounded drop-shadow-xl shadow-indigo-500/40",
             user.username === message.to_user.username
-            ? "bg-gray-300": "bg-gray-100"
+            ? "bg-gray-300": "bg-red-300"
         )}>
             <span className="block max-w-2xl break-words">{message.content}</span>
             <span

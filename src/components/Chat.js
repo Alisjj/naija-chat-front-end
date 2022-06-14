@@ -42,6 +42,7 @@ function Chat() {
       timeout.current = setTimeout(timeoutFunction, 5000);
     }
   }
+  
 
 
   useEffect(() => {
@@ -113,7 +114,7 @@ function Chat() {
   }
 
   const { readyState, sendJsonMessage } = useWebSocket(
-    user ? `ws://127.0.0.1:8000/${conversationName}/` : null,
+    user ? `ws://127.0.0.1:8000/chats/${conversationName}/` : null,
     {
       queryParams: {
         token: user ? user.token : "",
@@ -132,6 +133,7 @@ function Chat() {
           //   break;
           case "chat_message_echo":
             setMessageHistory((prev) => [data.message, ...prev]);
+            sendJsonMessage({ type: "read_messages" });
             break;
           case "last_50_messages":
             setMessageHistory(data.messages);
@@ -173,6 +175,15 @@ function Chat() {
     [ReadyState.CLOSED]: "Closed",
     [ReadyState.UNINSTANTIATED]: "Uninstantiated",
   }[readyState];
+
+
+  useEffect(() => {
+    if (connectionStatus === "Open") {
+      sendJsonMessage({
+        type: "read_messages",
+      });
+    }
+  }, [connectionStatus, sendJsonMessage]);
 
   console.log(connectionStatus)
 

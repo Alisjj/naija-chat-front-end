@@ -1,9 +1,11 @@
 import React, {useContext} from "react";
 import { Outlet, Link } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { NotificationContext } from '../contexts/NotificatonContext'
 
 export function Navbar() {
   const { user, logout } = useContext(AuthContext)
+  const { unreadMessageCount } = useContext(NotificationContext)
   return (
     <>
       <nav className="bg-red-300 border-gray-200 px-4 sm:px-6 py-2.5 rounded dark:bg-gray-800">
@@ -55,6 +57,13 @@ export function Navbar() {
                   aria-current="page"
                 >
                 Active Conversations
+                {unreadMessageCount > 0 && (
+                  <span className="ml-2 inline-flex items-center justify-center h-6 w-6 rounded-full bg-white">
+                    <span className="text-xs font-medium leading-none text-gray-800">
+                      {unreadMessageCount}
+                    </span>
+                  </span>
+                )}
                 </Link>
               </li>
               <li>
@@ -63,7 +72,7 @@ export function Navbar() {
                   className="block py-2 pr-4 pl-3 text-white md:p-0 dark:text-white"
                   aria-current="page"
                 >
-                  Chats
+                  Users
                 </Link>
               </li>
               {!user ? (

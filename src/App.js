@@ -7,12 +7,19 @@ import {AuthContextProvider} from './contexts/AuthContext';
 import Conversations from './components/Conversations';
 import ProtectedRoute from "./components/ProtectedRoute";
 import {ActiveConversations} from './components/ActiveConversations';
+import { NotificationContextProvider } from './contexts/NotificatonContext';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={ <AuthContextProvider> <Navbar /> </AuthContextProvider>}>
+        <Route path="/" element={ 
+                                  <AuthContextProvider>
+                                    <NotificationContextProvider>
+                                      <Navbar /> 
+                                    </ NotificationContextProvider>
+                                  </AuthContextProvider>
+                                }>
           <Route path="" element={
             <ProtectedRoute>
               <Conversations />
