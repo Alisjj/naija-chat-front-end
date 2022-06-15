@@ -114,7 +114,7 @@ function Chat() {
   }
 
   const { readyState, sendJsonMessage } = useWebSocket(
-    user ? `ws://n-chat-backend.herokuapp.com/chats/${conversationName}/` : null,
+    user ? `wss://n-chat-backend.herokuapp.com/chats/${conversationName}/` : null,
     {
       queryParams: {
         token: user ? user.token : "",

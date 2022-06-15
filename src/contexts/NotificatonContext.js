@@ -18,7 +18,7 @@ export const NotificationContextProvider = ({
   const [unreadMessageCount, setUnreadMessageCount] = useState(0);
 
   const { readyState } = useWebSocket(
-    user ? `ws://n-chat-backend.herokuapp.com/notifications/` : null,
+    user ? `wss://n-chat-backend.herokuapp.com/notifications/` : null,
     {
       queryParams: {
         token: user ? user.token : "",
