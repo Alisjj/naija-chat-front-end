@@ -48,7 +48,7 @@ function Chat() {
   useEffect(() => {
     async function fetchConversation() {
       const apiRes = await fetch(
-        `http://127.0.0.1:8000/api/conversations/${conversationName}/`,
+        `https://n-chat-backend.herokuapp.com/api/conversations/${conversationName}/`,
         {
           method: "GET",
           headers: {
@@ -95,7 +95,7 @@ function Chat() {
 
   async function fetchMessages() {
     const apiRes = await fetch(
-      `http://127.0.0.1:8000/api/messages/?conversation=${conversationName}&page=${page}`,
+      `https://n-chat-backend.herokuapp.com/api/messages/?conversation=${conversationName}&page=${page}`,
       {
         method: "GET",
         headers: {
@@ -114,7 +114,7 @@ function Chat() {
   }
 
   const { readyState, sendJsonMessage } = useWebSocket(
-    user ? `ws://127.0.0.1:8000/chats/${conversationName}/` : null,
+    user ? `ws://n-chat-backend.herokuapp.com/chats/${conversationName}/` : null,
     {
       queryParams: {
         token: user ? user.token : "",

@@ -20,7 +20,7 @@ export function AuthContextProvider({ children }) {
     //     setUser(user)
     // }
     async function login(username, password){
-        const response = await axios.post("http://127.0.0.1:8000/auth-token/", { username, password });
+        const response = await axios.post("https://n-chat-backend.herokuapp.com/auth-token/", { username, password });
         if (!response.data.token) {
           return response.data;
         }

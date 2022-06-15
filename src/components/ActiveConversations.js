@@ -10,7 +10,7 @@ export function ActiveConversations() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const res = await fetch("http://127.0.0.1:8000/api/conversations/", {
+      const res = await fetch("https://n-chat-backend.herokuapp.com/api/conversations/", {
         headers: {
           Authorization: `Token ${user?.token}`,
         },
